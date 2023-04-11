@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #test{
+            height: 200px;
+            width: 400px;
+            border: 1px solid black;
+            margin: auto;
+            padding: 4px;
+        }
+        #left{
+            width: 190px;
+            float: left;
+            background: blue;
+            border: 1px solid blue;
+            padding: 4px;
+        }
+        #left form input{
+            margin-bottom: 4px;
+        }
+        #right{
+            width: 190px;
+            float: right;
+            background: red;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Dette er min index side</h1>
+
+    <div id="test">
+<!--        <button>Button 1</button>-->
+<!--        <button>Button 2</button>-->
+<!--        <select>-->
+<!--            <option>Option 1</option>-->
+<!--            <option>Option 2</option>-->
+<!--            <option>Option 3</option>-->
+<!--        </select>-->
+        <div id="left">
+            <form action="/personData" method="post">
+                <input type="text" name="fname" placeholder="First name">
+                <input type="text" name="lname" placeholder="Last name">
+                <input type="submit" value="Send" style="color: aquamarine">
+            </form>
+        </div>
+        <div id="right">
+            <input type="checkbox" name="Vehicle 1" value="A">lmao A<br>
+            <input type="checkbox" name="Vehicle 2" value="B">lmao B<br>
+            <input type="checkbox" name="Vehicle 3" value="C" checked="checked">lmao C<br>
+        </div>
+    </div>
+
+</body>
+</html>
