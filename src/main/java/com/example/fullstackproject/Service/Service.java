@@ -34,8 +34,12 @@ public class Service {
             return false;
 
     }
+            //finder specific bruger i en liste af brugere
+    public Wishlist findUserById(int id){
 
-
+        return null;
+    }
+        //finder specific ønskeliste i liste af ønskelister
     public Wishlist findWishListById(int id){
 
         return null;
