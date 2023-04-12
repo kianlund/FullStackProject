@@ -124,7 +124,6 @@ public class Repository {
     }
 
     public Map<String, Object> getItemByIDAsMap(int itemID){ //Returns all item info as a map
-        ArrayList<Object> list = new ArrayList<>();
         Map<String, Object> map = new HashMap<>();
         SqlRowSet rowSet;
         String sql = "SELECT * FROM wishlistitem WHERE itemID = ?";
