@@ -3,6 +3,7 @@ package com.example.fullstackproject.Service;
 import com.example.fullstackproject.repository.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.List;
 @org.springframework.stereotype.Service
 public class Service {
@@ -38,8 +39,10 @@ public class Service {
         /*Det er lidt tid siden jeg har lavet validering, så kan ikke lige huske det, men ideen er at den tjekker
          inputtet mod det den har modtaget fra databasen.
          */
-    public boolean validation(String userName, String password, String inputName, String inputPassword){
-        if(userName.equals(inputName) && password.equals(inputPassword))
+    public boolean validation(String userName, String password){
+        int id = repo.getUserIDByName(userName);
+        ArrayList user = repo.getUserByID(id);
+        if(userName.equals(user.get(0)) && password.equals(user.get(1)))
             return true;
         else
             return false;
