@@ -50,21 +50,18 @@ public class Repository {
         dbaccess.update(sql,wishlistID);
     }
 
-    //Is getUser needed at all?????
-//    public ArrayList getUserByID(int userID){
-//        String sql = "SELECT * FROM accounts WHERE userID = ?";
-//        SqlRowSet rowSet;
-//        ArrayList<String> list = new ArrayList<>();
-//
-//        rowSet = dbaccess.queryForRowSet(sql);
-//
-//        while (rowSet.next()){
-//            list.add(rowSet.getString("username"));
-//            list.add(rowSet.getString("password"));
-//        }
-//
-//        return list;
-//    }
+    public ArrayList getUserByID(int userID){
+        String sql = "SELECT * FROM accounts WHERE userID = ?";
+        SqlRowSet rowSet;
+        ArrayList<String> list = new ArrayList<>();
+
+        rowSet = dbaccess.queryForRowSet(sql);
+
+        list.add(rowSet.getString("username"));
+        list.add(rowSet.getString("password"));
+
+        return list;
+    }
 
     public ArrayList<Integer> getUserIDList(){ //returns all userIDs in an arraylist
         //TODO: Consider other methods? RowMapper?
@@ -118,7 +115,7 @@ public class Repository {
         list.add(rowSet.getDouble("price"));
         list.add(rowSet.getInt("wishlistID"));
         list.add(rowSet.getInt("reservedBy"));
-        return list; //IDE wanted me to cast, why?
+        return list;
     }
 
     public Map<String, Object> getItemByIDAsMap(int itemID){ //Returns all item info as a map
