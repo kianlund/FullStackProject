@@ -1,5 +1,6 @@
 package com.example.fullstackproject.Service;
 
+import com.example.fullstackproject.repository.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -7,14 +8,24 @@ import java.util.List;
 public class Service {
 
     @Autowired
-    Repo repo;
-        //fetches all the wishlists from the database
-    public List<wishList> fetchAll(){
+    Repository repo;
 
-        return repo.fetchAll();
+        //fetches all the wishlists from the database
+    public List<wishList> fetchAllWishLists(String username){
+        int id = repo.getUserIDByName(username);
+        int userID =0;
+        for (int i: repo.getUserIDList()
+             ) { if(i == id){
+             userID = id;
+        }
+
+        };
+
+        return repo.getUserWishlists(userID);
     }
+
         //fetches all the users from the database
-    public List<User> fetcAll(){
+    public List<User> fetchAll(){
         return repo.fetchAll();
     }
         //Måske overflødig, da det lidt er den samme som addItem første gang
