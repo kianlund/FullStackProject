@@ -2,8 +2,12 @@ package com.example.fullstackproject.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @org.springframework.stereotype.Repository
 public class Repository {
@@ -16,12 +20,13 @@ public class Repository {
     }
 
     public void addUser(String username, String password){
-        String sql = "INSERT INTO accounts VALUES (?, ?)";
-        dbaccess.update(sql,username,password);
+        String sql = "INSERT INTO accounts (username, password) VALUES (?, ?)";
+        dbaccess.update(sql, username, password);
     }
 
     public void addWishlist(int userID){
-        String sql = "INSERT INTO wishlist VALUES (?)";
+        //TODO: Add creation date??
+        String sql = "INSERT INTO wishlist (userID) VALUES (?)";
         dbaccess.update(sql,userID);
     }
 
@@ -45,21 +50,18 @@ public class Repository {
         dbaccess.update(sql,wishlistID);
     }
 
-    //Is getUser needed at all?????
-//    public ArrayList getUserByID(int userID){
-//        String sql = "SELECT * FROM accounts WHERE userID = ?";
-//        SqlRowSet rowSet;
-//        ArrayList<String> list = new ArrayList<>();
-//
-//        rowSet = dbaccess.queryForRowSet(sql);
-//
-//        while (rowSet.next()){
-//            list.add(rowSet.getString("username"));
-//            list.add(rowSet.getString("password"));
-//        }
-//
-//        return list;
-//    }
+    public ArrayList getUserByID(int userID){
+        String sql = "SELECT * FROM accounts WHERE userID = ?";
+        SqlRowSet rowSet;
+        ArrayList<String> list = new ArrayList<>();
+
+        rowSet = dbaccess.queryForRowSet(sql);
+
+        list.add(rowSet.getString("username"));
+        list.add(rowSet.getString("password"));
+
+        return list;
+    }
 
     public ArrayList<Integer> getUserIDList(){ //returns all userIDs in an arraylist
         //TODO: Consider other methods? RowMapper?
@@ -71,9 +73,7 @@ public class Repository {
         return list;
     }
 
-    public ArrayList<String> getUsernameList(){ //returns all userrnames in an arraylist
-        //TODO: Consider other methods? RowMapper?
-        //ArrayList wont accept 'int' as datatype, using Integer instead, worth looking into?
+    public ArrayList<String> getUsernameList(){ //returns all usernames in an arraylist
         String sql = "SELECT username FROM accounts";
         List<String> tempList = dbaccess.queryForList(sql, String.class);
         ArrayList<String> list = new ArrayList<>(tempList);
@@ -103,5 +103,46 @@ public class Repository {
         id = dbaccess.queryForObject(sql, Integer.class, username);
 
         return id;
+    }
+
+    public ArrayList<Object> getItemByID(int itemID){ //Returns all item info as an ArrayList
+        ArrayList<Object> list = new ArrayList<>();
+        SqlRowSet rowSet;
+        String sql = "SELECT * FROM wishlistitem WHERE itemID = ?";
+        rowSet = dbaccess.queryForRowSet(sql, itemID);
+        list.add(rowSet.getString("item"));
+        list.add(rowSet.getString("itemURL"));
+        list.add(rowSet.getDouble("price"));
+        list.add(rowSet.getInt("wishlistID"));
+        list.add(rowSet.getInt("reservedBy"));
+        return list;
+    }
+
+    public Map<String, Object> getItemByIDAsMap(int itemID){ //Returns all item info as a map
+        Map<String, Object> map = new HashMap<>();
+        SqlRowSet rowSet;
+        String sql = "SELECT * FROM wishlistitem WHERE itemID = ?";
+        rowSet = dbaccess.queryForRowSet(sql, itemID);
+        map.put("item",rowSet.getString("item"));
+        map.put("itemURL",rowSet.getString("itemURL"));
+        map.put("price",rowSet.getDouble("price"));
+        map.put("wishlistID",rowSet.getInt("wishlistID"));
+        map.put("reservedBy",rowSet.getInt("reservedBy"));
+        return map;
+    }
+
+    public void editItemByID(int itemID, String item, String itemURL, double price){
+        String sql = "UPDATE wishlistitem SET item = ?, itemURL = ?, price = ? WHERE itemID = ?";
+        dbaccess.update(sql, item, itemURL, price, itemID);
+    }
+
+    public void addItemReservation(int itemID, int reservedBy){
+        String sql = "UPDATE wishlistitem SET reservedBy = ? WHERE itemID = ?";
+        dbaccess.update(sql, reservedBy, itemID);
+    }
+
+    public void removeItemReservation(int itemID){
+        String sql = "UPDATE wishlistitem SET reservedBy = null WHERE itemID = ?";
+        dbaccess.update(sql, itemID);
     }
 }

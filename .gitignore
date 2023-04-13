@@ -34,5 +34,4 @@ build/
 
 ### OTHER ###
 *.class
-
 /src/main/resources/application.properties
