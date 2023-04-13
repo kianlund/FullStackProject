@@ -77,8 +77,6 @@ public class Repository {
     }
 
     public ArrayList<String> getUsernameList(){ //returns all usernames in an arraylist
-        //TODO: Consider other methods? RowMapper?
-        //ArrayList wont accept 'int' as datatype, using Integer instead, worth looking into?
         String sql = "SELECT username FROM accounts";
         List<String> tempList = dbaccess.queryForList(sql, String.class);
         ArrayList<String> list = new ArrayList<>(tempList);
@@ -134,5 +132,20 @@ public class Repository {
         map.put("wishlistID",rowSet.getInt("wishlistID"));
         map.put("reservedBy",rowSet.getInt("reservedBy"));
         return map;
+    }
+
+    public void editItemByID(int itemID, String item, String itemURL, double price){
+        String sql = "UPDATE wishlistitem SET item = ?, itemURL = ?, price = ? WHERE itemID = ?";
+        dbaccess.update(sql, item, itemURL, price, itemID);
+    }
+
+    public void addItemReservation(int itemID, int reservedBy){
+        String sql = "UPDATE wishlistitem SET reservedBy = ? WHERE itemID = ?";
+        dbaccess.update(sql, reservedBy, itemID);
+    }
+
+    public void removeItemReservation(int itemID){
+        String sql = "UPDATE wishlistitem SET reservedBy = null WHERE itemID = ?";
+        dbaccess.update(sql, itemID);
     }
 }
