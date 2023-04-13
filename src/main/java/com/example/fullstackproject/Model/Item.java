@@ -6,6 +6,9 @@ public class Item {
     private String itemURL;
     private double price;
 
+    public Item(){
+        //Empty constructor
+    }
     public Item(int itemID, String item, String itemURL, double price){
         this.itemID = itemID;
         this.item = item;

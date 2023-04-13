@@ -4,6 +4,9 @@ public class Wishlist {
     private int wishlistID;
     private int userID;
 
+    public Wishlist(){
+        //Empty constructor
+    }
     public Wishlist(int wishlistID, int userID){
         this.userID = userID;
         this.wishlistID = wishlistID;

@@ -5,6 +5,9 @@ public class User {
     private String username;
     private String password;
 
+    public User(){
+        //Empty constructor
+    }
     public User(int userID, String username, String password){
         this.userID = userID;
         this.username = username;
