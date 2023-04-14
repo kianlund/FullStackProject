@@ -5,16 +5,18 @@ public class Item {
     private String item;
     private String itemURL;
     private double price;
+    private int wishlistID;
     private int reservedBy;
 
     public Item(){
         //Empty constructor
     }
-    public Item(int itemID, String item, String itemURL, double price){
+    public Item(int itemID, String item, String itemURL, double price,int wishlistID){
         this.itemID = itemID;
         this.item = item;
         this.itemURL = itemURL;
         this.price = price;
+        this.wishlistID = wishlistID;
     }
 
     public int getItemID() {
@@ -55,5 +57,13 @@ public class Item {
 
     public void setReservedBy(int reservedBy) {
         this.reservedBy = reservedBy;
+    }
+
+    public int getWishlistID() {
+        return wishlistID;
+    }
+
+    public void setWishlistID(int wishlistID) {
+        this.wishlistID = wishlistID;
     }
 }
