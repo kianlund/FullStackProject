@@ -5,6 +5,7 @@ public class Item {
     private String item;
     private String itemURL;
     private double price;
+    private int reservedBy;
 
     public Item(){
         //Empty constructor
@@ -46,5 +47,13 @@ public class Item {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public int getReservedBy() {
+        return reservedBy;
+    }
+
+    public void setReservedBy(int reservedBy) {
+        this.reservedBy = reservedBy;
     }
 }
