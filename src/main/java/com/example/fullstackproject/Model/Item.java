@@ -6,7 +6,7 @@ public class Item {
     private String itemURL;
     private double price;
     private int wishlistID;
-    private int reservedBy;
+    private Integer reservedBy;
 
     public Item(){
         //Empty constructor
@@ -51,11 +51,11 @@ public class Item {
         this.price = price;
     }
 
-    public int getReservedBy() {
+    public Integer getReservedBy() {
         return reservedBy;
     }
 
-    public void setReservedBy(int reservedBy) {
+    public void setReservedBy(Integer reservedBy) {
         this.reservedBy = reservedBy;
     }
 
