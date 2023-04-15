@@ -2,57 +2,47 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <style>
-        #test{
-            height: 200px;
-            width: 400px;
-            border: 1px solid black;
-            margin: auto;
-            padding: 4px;
-        }
-        #left{
-            width: 190px;
-            float: left;
-            background: blue;
-            border: 1px solid blue;
-            padding: 4px;
-        }
-        #left form input{
-            margin-bottom: 4px;
-        }
-        #right{
-            width: 190px;
-            float: right;
-            background: red;
-            border: 1px solid red;
-        }
-    </style>
+    <title>Wishlister</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-
-    <h1>Dette er min index side</h1>
-
-    <div id="test">
-<!--        <button>Button 1</button>-->
-<!--        <button>Button 2</button>-->
-<!--        <select>-->
-<!--            <option>Option 1</option>-->
-<!--            <option>Option 2</option>-->
-<!--            <option>Option 3</option>-->
-<!--        </select>-->
-        <div id="left">
-            <form method="get">
-                <input type="text" name="fname" placeholder="First name">
-                <input type="text" name="lname" placeholder="Last name">
-                <input type="submit" value="test" style="color: aquamarine" formaction="test">
+    <div class="maincontainer">
+        <div>
+            <form method="post">
+                <input type="text" name="username" placeholder="Username">
+                <input type="text" name="password" placeholder="Password">
+                <input type="submit" value="Add user" formaction="addUser">
+                <input type="submit" value="Login" formaction="login">
+                <input type="submit" value="test" formaction="test">
             </form>
         </div>
-        <div id="right">
-            <input type="checkbox" name="Vehicle 1" value="A">lmao A<br>
-            <input type="checkbox" name="Vehicle 2" value="B">lmao B<br>
-            <input type="checkbox" name="Vehicle 3" value="C" checked="checked">lmao C<br>
-        </div>
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Username</th>
+                <th>Password</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user: ${userList}">
+                <td th:text="${user.userID}"/>
+                <td th:text="${user.username}"/>
+                <td th:text="${user.password}"/>
+                <td>
+<!--                    <a th:href="@{'/viewOne/'+${person.id}}">-->
+<!--                        <button class="btn-viewOne" id="btn-viewOne">View a person</button>-->
+<!--                    </a>-->
+<!--                    <a th:href="@{'/deleteOne/'+${person.id}}">-->
+<!--                        <button class="btn-deleteOne" id="btn-deleteOne">Delete a person</button>-->
+<!--                    </a>-->
+<!--                    <a th:href="@{'/updateOne/'+${person.id}}">-->
+<!--                        <button class="btn-updateOne" id="btn-updateOne">Update a person</button>-->
+<!--                    </a>-->
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 
 </body>
