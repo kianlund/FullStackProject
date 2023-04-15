@@ -26,8 +26,10 @@ public class Wishlistcontroller {
             model.addAttribute(tempUser.getUsername());
 
                 List<Wishlist> wishlists = service.fetchAllWishLists(tempUser);
-                model.addAttribute("userList", wishlists);
+                System.out.println(tempUser);
+                model.addAttribute("wishlists", wishlists);
                 return "wishlist.html";
+
 
     }
 

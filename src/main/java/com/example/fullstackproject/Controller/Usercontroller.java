@@ -42,8 +42,9 @@ public class Usercontroller {
         List<User> list = service.fetchAll();
         if (service.validation(user)){
             session.setAttribute("currentUser", list.get(0));
+            return ("/wishlist");
         }
+        return ("/index");
 
-        return ("/wishlist");
     }
 }
