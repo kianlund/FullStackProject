@@ -1,5 +1,7 @@
 package com.example.fullstackproject.Service;
 
+import com.example.fullstackproject.Model.User;
+import com.example.fullstackproject.Model.Wishlist;
 import com.example.fullstackproject.repository.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,7 +14,7 @@ public class Service {
     Repository repo;
 
         //fetches all the wishlists from the database
-    public List<wishList> fetchAllWishLists(String username){
+    public List<Wishlist> fetchAllWishLists(String username){
         int id = repo.getUserIDByName(username);
         int userID =0;
         for (int i: repo.getUserIDList()
@@ -25,16 +27,15 @@ public class Service {
         return repo.getUserWishlists(userID);
     }
 
-        //fetches all the users from the database
-    public List<User> fetchAll(){
-        return repo.fetchAll();
-    }
+
         //Måske overflødig, da det lidt er den samme som addItem første gang
-    public void addWishList(wishList w){
-        repo.addWishList(w);
+    public void addWishList(String userName){
+        int userID = repo.getUserIDByName(userName);
+        repo.addWishlist(userID);
     }
-    public void addItem(Item i){
-        repo.addItem(i);
+    public void addItem(int wishlistID, String item,String itemURL, double itemPrice){
+
+        repo.addItem(wishlistID, item, itemURL, itemPrice);
     }
         /*Det er lidt tid siden jeg har lavet validering, så kan ikke lige huske det, men ideen er at den tjekker
          inputtet mod det den har modtaget fra databasen.
@@ -49,28 +50,31 @@ public class Service {
 
     }
             //finder specific bruger i en liste af brugere
-    public Wishlist findUserById(int id){
+    public ArrayList findUserById(String userName){
+        int userID = repo.getUserIDByName(userName);
 
-        return null;
+        return repo.getUserByID(userID);
     }
         //finder specific ønskeliste i liste af ønskelister
-    public Wishlist findWishListById(int id){
+    public ArrayList findWishListById(int userid){
 
-        return null;
+        return repo.getUserWishlists(userid);
     }
 
-    public boolean deleteWishList(int id){
-
-        return true;
+    public void deleteWishList(String userName){
+        int userID = repo.getUserIDByName(userName);
+        repo.deleteWishlistByID(userID);
     }
 
-    public boolean deleteItem(int id){
+    public void deleteItem(int itemID){
 
-        return true;
+        repo.deleteItemByID(itemID);
+
     }
 
 
-    public void updateWishList(int id, Wishlist w){
+    public void updateWishList(int wishlistID, String item,String itemURL, double itemPrice){
 
+        repo.editItemByID(wishlistID, item, itemURL, itemPrice);
     }
 }
