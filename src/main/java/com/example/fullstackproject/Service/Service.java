@@ -1,6 +1,9 @@
 package com.example.fullstackproject.Service;
 
-import com.example.fullstackproject.repository.Repository;
+import com.example.fullstackproject.Model.Item;
+import com.example.fullstackproject.Model.User;
+import com.example.fullstackproject.Model.Wishlist;
+import com.example.fullstackproject.Repository.RepositoryV2;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -8,29 +11,29 @@ import java.util.List;
 public class Service {
 
     @Autowired
-    Repository repo;
+    RepositoryV2 repo;
 
         //fetches all the wishlists from the database
-    public List<wishList> fetchAllWishLists(String username){
-        int id = repo.getUserIDByName(username);
-        int userID =0;
-        for (int i: repo.getUserIDList()
-             ) { if(i == id){
-             userID = id;
-        }
-
-        };
-
-        return repo.getUserWishlists(userID);
+    public List<Wishlist> fetchAllWishLists(User user){
+//        List<Wishlist> list = repo.fetchAllUserWishlists(user.getUserID());
+        return repo.fetchAllUserWishlists(user.getUserID());
     }
 
-        //fetches all the users from the database
+    //fetches all the users from the database
     public List<User> fetchAll(){
-        return repo.fetchAll();
+        return repo.fetchAllUsers();
     }
-        //Måske overflødig, da det lidt er den samme som addItem første gang
-    public void addWishList(wishList w){
-        repo.addWishList(w);
+
+    public List<Item> fetchAllWishlistItems(Wishlist wishlist){
+        return repo.fetchAllWishlistItems(wishlist.getWishlistID());
+    }
+    //Måske overflødig, da det lidt er den samme som addItem første gang
+    public void addWishList(Wishlist w){
+        repo.addWishlist(w);
+    }
+
+    public void addUser(User u){
+        repo.addUser(u);
     }
     public void addItem(Item i){
         repo.addItem(i);
@@ -38,36 +41,47 @@ public class Service {
         /*Det er lidt tid siden jeg har lavet validering, så kan ikke lige huske det, men ideen er at den tjekker
          inputtet mod det den har modtaget fra databasen.
          */
-    public boolean validation(String userName, String password, String inputName, String inputPassword){
-        if(userName.equals(inputName) && password.equals(inputPassword))
-            return true;
-        else
+        public boolean validation(User user){
+//            int id = repo.getUserIDByName(userName);
+            List<User> tempUsers = repo.fetchAllUsers();
+            for (User listUser: tempUsers) {
+                if(user.getUsername().equals(listUser.getUsername()) && user.getPassword().equals(listUser.getPassword())){
+                    return true;
+                }
+            }
             return false;
-
-    }
+        }
             //finder specific bruger i en liste af brugere
-    public Wishlist findUserById(int id){
-
-        return null;
+    public User findUserById(int id){
+        return repo.getUserByID(id);
     }
         //finder specific ønskeliste i liste af ønskelister
     public Wishlist findWishListById(int id){
 
-        return null;
+        return repo.getWishlistByID(id);
     }
 
-    public boolean deleteWishList(int id){
-
-        return true;
+    public Item findItemById(int id){
+        return repo.getItemByID(id);
     }
 
-    public boolean deleteItem(int id){
-
-        return true;
+    public void deleteWishList(int id){
+        repo.deleteWishlistByID(id);
     }
 
+    public void deleteItem(int id){
+        repo.deleteItemByID(id);
+    }
 
-    public void updateWishList(int id, Wishlist w){
+    public void updateItem(Item item){
+        repo.updateItem(item);
+    }
 
+    public void updateItemReservation(Item item){
+        repo.updateItemReservation(item);
+    }
+
+    public void removeItemReservation(Item item){
+        repo.removeItemReservation(item);
     }
 }
