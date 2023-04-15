@@ -35,7 +35,7 @@ public class Usercontroller {
         return ("/index");
     }
 
-    @PostMapping("/login")
+    @PostMapping("/wishlist")
     public String login(Model model, @ModelAttribute User user, WebRequest wr, HttpSession session){
         user.setUsername(wr.getParameter("username"));
         user.setPassword(wr.getParameter("password"));
@@ -44,6 +44,6 @@ public class Usercontroller {
             session.setAttribute("currentUser", list.get(0));
         }
 
-        return ("/index");
+        return ("/wishlist");
     }
 }
