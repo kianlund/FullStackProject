@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wishlist</title>
+</head>
+<body>
+<div class="container">
+    <div class="header">Create Wishlist</div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Wishlist ID</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="wishlist: ${wishlists}">
+            <td th:text="${wishlist.wishlistID}"/>
+
+            <td>
+                <!--                    <a th:href="@{'/viewOne/'+${person.id}}">-->
+                <!--                        <button class="btn-viewOne" id="btn-viewOne">View a person</button>-->
+                <!--                    </a>-->
+                <!--                    <a th:href="@{'/deleteOne/'+${person.id}}">-->
+                <!--                        <button class="btn-deleteOne" id="btn-deleteOne">Delete a person</button>-->
+                <!--                    </a>-->
+                <!--                    <a th:href="@{'/updateOne/'+${person.id}}">-->
+                <!--                        <button class="btn-updateOne" id="btn-updateOne">Update a person</button>-->
+                <!--                    </a>-->
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

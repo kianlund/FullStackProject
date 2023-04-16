@@ -36,7 +36,7 @@ public class Usercontroller {
         return ("redirect:/");
     }
 
-    @PostMapping("/login")
+    @PostMapping("/wishlist")
     public String login(Model model, @ModelAttribute User user, WebRequest wr, HttpSession session){
         user.setUsername(wr.getParameter("username"));
         user.setPassword(wr.getParameter("password"));
@@ -45,6 +45,7 @@ public class Usercontroller {
             session.setAttribute("currentUser", list.get(list.size()-1)); //Gets the most recent user(Last user in list)
             return "redirect:/wishlist";
         }
+
         return ("/index");
     }
 
