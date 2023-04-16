@@ -4,6 +4,35 @@
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        body{
+            background-color: black;
+        }
+
+        .row{
+            margin: 0 auto;
+            width: 640px;
+            height: 20px;
+            background: deeppink;
+            border-radius: 5px;
+        }
+
+        .maincontainer {
+            margin: 0 auto;
+            width: 640px;
+            height: 320px;
+            background: lightgrey;
+            border-radius: 10px;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .button{
+            border: none;
+            border-radius: 5px;
+        }
+
+    </style>
 </head>
 <body>
     <div class="maincontainer">
@@ -12,7 +41,7 @@
                 <input type="text" name="username" placeholder="Username">
                 <input type="text" name="password" placeholder="Password">
                 <input type="submit" value="Add user" formaction="addUser">
-                <input type="submit" value="Login" formaction="wishlist">
+                <input type="submit" value="Login" formaction="login">
                 <input type="submit" value="test" formaction="test">
             </form>
         </div>

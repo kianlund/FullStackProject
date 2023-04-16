@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.context.request.WebRequest;
 
 import java.util.List;
 
@@ -29,8 +30,27 @@ public class Wishlistcontroller {
                 System.out.println(tempUser);
                 model.addAttribute("wishlists", wishlists);
                 return "wishlist.html";
+    }
 
+    @PostMapping("/addWishlist")
+    public String addWishlist(Model model, @ModelAttribute Wishlist wishlist, HttpSession session){
+        System.out.println("Hertil!!!");
+        User tempUser = (User) session.getAttribute("currentUser");
+        wishlist.setUserID(tempUser.getUserID());
+        service.addWishList(wishlist);
 
+        session.setAttribute("currentWishlist", wishlist);
+        List<Wishlist> wishlists = service.fetchAllWishLists(tempUser);
+        model.addAttribute("wishlists", wishlists);
+        return ("/wishlist");
+    }
+
+    @PostMapping("/editWishlist")
+    public String editWishlist(Model model, HttpSession session, WebRequest wr){
+        int id = Integer.parseInt(wr.getParameter("id"));
+        Wishlist wishlist = service.findWishListById(id);
+        session.setAttribute("currentWishlist", wishlist);
+        return ("redirect:/item");
     }
 
 }

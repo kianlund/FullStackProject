@@ -35,14 +35,14 @@ public class Usercontroller {
         return ("/index");
     }
 
-    @PostMapping("/wishlist")
+    @PostMapping("/login")
     public String login(Model model, @ModelAttribute User user, WebRequest wr, HttpSession session){
         user.setUsername(wr.getParameter("username"));
         user.setPassword(wr.getParameter("password"));
         List<User> list = service.fetchAll();
         if (service.validation(user)){
-            session.setAttribute("currentUser", list.get(0));
-            return ("/wishlist");
+            session.setAttribute("currentUser", list.get(list.size()-1));
+            return ("redirect:/wishlist");
         }
         return ("/index");
 
