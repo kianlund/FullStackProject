@@ -3,10 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title>Wishlist</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
+<style>
+    body{
+        background-color: black;
+    }
+
+    .row{
+        margin: 0 auto;
+        width: 640px;
+        height: 20px;
+        background: deeppink;
+        border-radius: 5px;
+    }
+
+    .maincontainer {
+        margin: 0 auto;
+        width: 640px;
+        height: 320px;
+        background: lightgrey;
+        border-radius: 10px;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .button{
+        border: none;
+        border-radius: 5px;
+    }
+
+</style>
 <body>
-<div class="container">
+<div class="maincontainer">
     <div class="header">Create Wishlist</div>
+    <form method="post">
+        <input type="submit" value="add wishlist" formaction="addWishlist">
+    </form>
 
     <table>
         <thead>
@@ -17,7 +50,15 @@
         </thead>
         <tbody>
         <tr th:each="wishlist: ${wishlists}">
-            <td th:text="${wishlist.wishlistID}"/>
+
+            <td>Wishlist ID: <span th:text="${wishlist.wishlistID}"/>
+                <form method="post">
+                <input type="submit" value="Edit wishlist" formaction="editWishlist">
+                    <input type="hidden" name="id" th:value="${wishlist.wishlistID}">
+                </form>
+            </td>
+
+
 
             <td>
                 <!--                    <a th:href="@{'/viewOne/'+${person.id}}">-->
