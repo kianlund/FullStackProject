@@ -19,20 +19,21 @@ public class Usercontroller {
     @Autowired
     Service service;
     @GetMapping("/")
-    public String index(Model model){
+    public String index(Model model, HttpSession session){
+        if (session.getAttribute("currentUser") != null){
+            return "redirect:/";
+        }
         List<User> userList = service.fetchAll();
         model.addAttribute("userList", userList);
-        return "/index.html";
+        return "/index";
     }
 
     @PostMapping("/addUser")
-    public String addUser(Model model, @ModelAttribute User user, WebRequest wr){
+    public String addUser(@ModelAttribute User user, WebRequest wr){
         user.setUsername(wr.getParameter("username"));
         user.setPassword(wr.getParameter("password"));
         service.addUser(user);
-        List<User> list = service.fetchAll();
-        model.addAttribute("userList",list);
-        return ("/index");
+        return ("redirect:/");
     }
 
     @PostMapping("/login")
@@ -42,6 +43,7 @@ public class Usercontroller {
         List<User> list = service.fetchAll();
         if (service.validation(user)){
             session.setAttribute("currentUser", list.get(list.size()-1)); //Gets the most recent user(Last user in list)
+            return "redirect:/wishlist";
         }
         return ("/index");
     }
@@ -49,6 +51,6 @@ public class Usercontroller {
     @PostMapping("/logout")
     public String logout(HttpSession session){
         session.invalidate();
-        return "/index";
+        return "redirect:/";
     }
 }

@@ -22,7 +22,7 @@ public class Itemcontroller {
     Service service;
 
     @GetMapping("/item/")
-    public String itemHome(HttpSession session, Model model){
+    public String item(HttpSession session, Model model){
         Wishlist tempWishlist = (Wishlist) session.getAttribute("currentWishlist");
         List<Item> list = service.fetchAllWishlistItems(tempWishlist);
         model.addAttribute("itemList", list);
@@ -30,8 +30,9 @@ public class Itemcontroller {
     }
 
     @PostMapping("/addItem")
-    public String addUser(Model model, @ModelAttribute Item item, WebRequest wr, HttpSession session){
+    public String addUser(@ModelAttribute Item item, WebRequest wr, HttpSession session){
         Wishlist tempWishlist = (Wishlist) session.getAttribute("currentWishlist");
+
         item.setItem(wr.getParameter("item"));
         item.setItemURL(wr.getParameter("itemURL"));
         item.setPrice(Double.parseDouble(wr.getParameter("price")));
@@ -39,23 +40,15 @@ public class Itemcontroller {
 
         service.addItem(item);
 
-        List<Item> list = service.fetchAllWishlistItems(tempWishlist);
-        model.addAttribute("itemList",list);
-
-        return ("/items");
+        return ("redirect:/item");
     }
 
     @PostMapping("/deleteItem")
-    public String deleteItem(Model model, WebRequest wr, HttpSession session){
-        Wishlist tempWishlist = (Wishlist) session.getAttribute("currentWishlist");
+    public String deleteItem(WebRequest wr, HttpSession session){
         int tempID = Integer.parseInt(wr.getParameter("itemID"));
-
         service.deleteItem(tempID);
 
-        List<Item> list = service.fetchAllWishlistItems(tempWishlist);
-        model.addAttribute("itemList",list);
-
-        return ("/items");
+        return ("redirect:/item");
     }
 
     @PostMapping("/editItem")
@@ -65,34 +58,25 @@ public class Itemcontroller {
     }
 
     @PostMapping("/reserveItem")
-    public String reserveItem(Model model, WebRequest wr, HttpSession session){
+    public String reserveItem(WebRequest wr, HttpSession session){
         Wishlist tempUser = (Wishlist) session.getAttribute("currentUser");
-        Wishlist tempWishlist = (Wishlist) session.getAttribute("currentWishlist");
         int tempItemID = Integer.parseInt(wr.getParameter("itemID"));
         Item tempItem = service.findItemById(tempItemID);
         tempItem.setReservedBy(tempUser.getUserID());
 
         service.updateItemReservation(tempItem);
 
-        List<Item> list = service.fetchAllWishlistItems(tempWishlist);
-        model.addAttribute("itemList",list);
-
-        return ("/items");
+        return ("redirect:/item");
     }
 
     @PostMapping("/unreserveItem")
-    public String unreserveItem(Model model, WebRequest wr, HttpSession session){
-        Wishlist tempWishlist = (Wishlist) session.getAttribute("currentWishlist");
+    public String unreserveItem(WebRequest wr){
         int tempItemID = Integer.parseInt(wr.getParameter("itemID"));
 
         Item tempItem = service.findItemById(tempItemID);
         tempItem.setReservedBy(null);
 
         service.updateItemReservation(tempItem);
-
-        List<Item> list = service.fetchAllWishlistItems(tempWishlist);
-        model.addAttribute("itemList",list);
-
-        return ("/items");
+        return ("redirect:/item");
     }
 }
