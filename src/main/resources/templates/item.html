@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wishlister</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+    <div class="maincontainer">
+        <div>
+            TEXT??
+        </div>
+        <table>
+            <thead>
+            <tr>
+                <th>Item</th>
+                <th>URL</th>
+                <th>Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item: ${itemList}">
+                <td th:text="${item.item}"/>
+                <td th:text="${item.itemURL}"/>
+                <td th:text="${item.price}"/>
+                <td>
+                    <form method="post">
+                        <input type="hidden" th:value="item.itemID">
+                        <input type="submit" value="Edit" formaction="editItem">
+                        <input type="submit" value="Delete" formaction="deleteItem">
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <form method="post">
+                <td><input type="text" placeholder="Item description" value="item"></td>
+                <td><input type="text" placeholder="Link" value="itemURL"></td>
+                <td><input type="text" placeholder="Price" value="itemPrice"></td>
+                <td><input type="submit" value="Delete" formaction="addItem"></td>
+                </form>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

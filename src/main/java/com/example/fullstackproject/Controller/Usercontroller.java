@@ -41,9 +41,14 @@ public class Usercontroller {
         user.setPassword(wr.getParameter("password"));
         List<User> list = service.fetchAll();
         if (service.validation(user)){
-            session.setAttribute("currentUser", list.get(0));
+            session.setAttribute("currentUser", list.get(list.size()-1)); //Gets the most recent user(Last user in list)
         }
-
         return ("/index");
+    }
+
+    @PostMapping("/logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "/index";
     }
 }

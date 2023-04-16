@@ -10,7 +10,7 @@
         <div>
             <form method="post">
                 <input type="text" name="username" placeholder="Username">
-                <input type="text" name="password" placeholder="Password">
+                <input type="password" name="password" placeholder="Password">
                 <input type="submit" value="Add user" formaction="addUser">
                 <input type="submit" value="Login" formaction="login">
                 <input type="submit" value="test" formaction="test">
@@ -29,17 +29,6 @@
                 <td th:text="${user.userID}"/>
                 <td th:text="${user.username}"/>
                 <td th:text="${user.password}"/>
-                <td>
-<!--                    <a th:href="@{'/viewOne/'+${person.id}}">-->
-<!--                        <button class="btn-viewOne" id="btn-viewOne">View a person</button>-->
-<!--                    </a>-->
-<!--                    <a th:href="@{'/deleteOne/'+${person.id}}">-->
-<!--                        <button class="btn-deleteOne" id="btn-deleteOne">Delete a person</button>-->
-<!--                    </a>-->
-<!--                    <a th:href="@{'/updateOne/'+${person.id}}">-->
-<!--                        <button class="btn-updateOne" id="btn-updateOne">Update a person</button>-->
-<!--                    </a>-->
-                </td>
             </tr>
             </tbody>
         </table>
