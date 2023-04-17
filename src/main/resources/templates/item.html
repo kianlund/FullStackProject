@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Wishlister</title>
-    <link rel="stylesheet" type="text/css" href="/style.css">
+    <link rel="stylesheet" type="text/css" href="style.css?v=1234">
 </head>
 <body>
     <div class="maincontainer">
@@ -17,9 +17,9 @@
             <span th:text="${item.price}"/>
             <form method="post">
                 <span>
-                <input type="hidden" name="itemID" th:value="${item.itemID}">
-                <input type="submit" value="Edit" formaction="editItem">
-                <input type="submit" value="Delete" formaction="deleteItem">
+                <input class="btn" type="hidden" name="itemID" th:value="${item.itemID}">
+                <input class="btn" type="submit" value="Edit" formaction="editItem">
+                <input class="btn" type="submit" value="Delete" formaction="deleteItem">
                 </span>
             </form>
     </div>

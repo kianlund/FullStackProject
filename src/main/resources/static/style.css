@@ -1,20 +1,19 @@
 body{
-    background-color: darkgrey;
+    background-color: #333333;
 }
 
 .row{
-    font-size: 123px;
     display: flex;
-    float: left;
-    flex-direction: column;
     margin: 0 auto;
     padding: 5px;
     gap: 5px;
     width: 640px;
     height: 25px;
-    background: lightgrey;
-    background-color: aqua;
+    background-color: #444444;
     border-radius: 5px;
+    color: white;
+    flex-direction: column;
+    align-items: center;
 }
 
 .maincontainer {
@@ -22,7 +21,8 @@ body{
     width: 640px;
     min-height: 320px;
     max-height: fit-content;
-    background: lightgrey;
+    background-color: #444444;
+    color: white;
     border-radius: 10px;
     justify-content: center;
     text-align: center;
@@ -31,7 +31,17 @@ body{
 button{
     border: none;
     border-radius: 5px;
-    font-size: 14px;
+}
+
+.btn{
+    border: none;
+    border-radius: 5px;
+    float: right;
+}
+
+.test{
+    display: flex;
+    background-color: deeppink;
 }
 
 
