@@ -1,24 +1,37 @@
 body{
-    background-color: black;
+    background-color: darkgrey;
 }
 
 .row{
+    font-size: 123px;
+    display: flex;
+    float: left;
+    flex-direction: column;
     margin: 0 auto;
+    padding: 5px;
+    gap: 5px;
     width: 640px;
-    height: 20px;
-    background: deeppink;
+    height: 25px;
+    background: lightgrey;
+    background-color: aqua;
     border-radius: 5px;
 }
 
 .maincontainer {
     margin: 0 auto;
     width: 640px;
-    height: 320px;
+    min-height: 320px;
+    max-height: fit-content;
     background: lightgrey;
     border-radius: 10px;
+    justify-content: center;
+    text-align: center;
 }
 
-.button{
+button{
     border: none;
     border-radius: 5px;
+    font-size: 14px;
 }
+
+
