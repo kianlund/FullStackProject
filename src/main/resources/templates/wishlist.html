@@ -7,10 +7,10 @@
 </head>
 <body>
 <div class="maincontainer">
-    <div class="header">Create Wishlist</div>
-    <form method="post">
-        <input type="submit" value="Add wishlist" formaction="addWishlist">
-        <input type="submit" value="Logout" formaction="logout">
+    <div class="header">Your Wishlists</div>
+    <form method="post" class="input-form">
+        <input style="background-color: darkgreen" class="btn2" type="submit" value=" + Add wishlist" formaction="addWishlist">
+        <input style="background-color: darkred" class="btn2" type="submit" value="Logout" formaction="logout">
     </form>
 
     <table>
@@ -25,7 +25,7 @@
 
             <td>Wishlist ID: <span th:text="${wishlist.wishlistID}"/>
                 <form method="post">
-                <input type="submit" value="Edit wishlist" formaction="editWishlist">
+                <input class="btn" type="submit" value="Edit wishlist" formaction="editWishlist">
                     <input type="hidden" name="id" th:value="${wishlist.wishlistID}">
                 </form>
             </td>
