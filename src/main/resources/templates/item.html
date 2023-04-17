@@ -7,6 +7,10 @@
 </head>
 <body>
     <div class="maincontainer">
+        <form method="post">
+            <input style="background-color: darkred" class="btn2" type="submit" value="Logout" formaction="logout">
+        </form>
+
         <div>
             <p class="header" th:text="${currentUser.getUsername()}"></p>
             Wishlist ID: <p th:text="${currentWishlist.getWishlistID()}"></p>

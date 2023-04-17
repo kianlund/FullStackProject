@@ -7,10 +7,12 @@
 </head>
 <body>
 <div class="maincontainer">
+    <form method="post">
+        <input style="background-color: darkred" class="btn2" type="submit" value="Logout" formaction="logout">
+    </form>
     <div class="header">Wishlists</div>
     <form method="post" class="input-form">
         <input style="background-color: darkgreen" class="btn2" type="submit" value=" + Add wishlist" formaction="addWishlist">
-        <input style="background-color: darkred" class="btn2" type="submit" value="Logout" formaction="logout">
     </form>
 
 <!--    <table>-->
@@ -47,8 +49,8 @@
 <!--        </tbody>-->
 <!--    </table>-->
 </div>
-<div class="row" th:each="wishlist: ${wishlists}">
-    <span class="rowItem" th:text="${wishlist.wishlistID}"/>
+<div class="row" th:each="wishlist, iteration :  ${wishlists}">
+    Wishlist #<span class="rowItem" th:text="${iteration.count}"/>
     <form method="post">
         <input class="btn" type="submit" value="Edit" formaction="editWishlist">
         <input class="btn" type="submit" value="Delete" formaction="deleteWishlist">
