@@ -21,7 +21,7 @@ public class Itemcontroller {
     @Autowired
     Service service;
 
-    @GetMapping("/item/")
+    @GetMapping("/item")
     public String item(HttpSession session, Model model){
         Wishlist tempWishlist = (Wishlist) session.getAttribute("currentWishlist");
         List<Item> list = service.fetchAllWishlistItems(tempWishlist);
@@ -30,12 +30,12 @@ public class Itemcontroller {
     }
 
     @PostMapping("/addItem")
-    public String addUser(@ModelAttribute Item item, WebRequest wr, HttpSession session){
+    public String addItem(@ModelAttribute Item item, WebRequest wr, HttpSession session){
         Wishlist tempWishlist = (Wishlist) session.getAttribute("currentWishlist");
 
         item.setItem(wr.getParameter("item"));
         item.setItemURL(wr.getParameter("itemURL"));
-        item.setPrice(Double.parseDouble(wr.getParameter("price")));
+        item.setPrice(Double.parseDouble(wr.getParameter("itemPrice")));
         item.setWishlistID(tempWishlist.getWishlistID());
 
         service.addItem(item);

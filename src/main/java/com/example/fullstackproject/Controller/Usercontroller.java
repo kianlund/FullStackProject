@@ -21,7 +21,7 @@ public class Usercontroller {
     @GetMapping("/")
     public String index(Model model, HttpSession session){
         if (session.getAttribute("currentUser") != null){
-            return "redirect:/";
+            return "redirect:/wishlist";
         }
         List<User> userList = service.fetchAll();
         model.addAttribute("userList", userList);
@@ -36,7 +36,7 @@ public class Usercontroller {
         return ("redirect:/");
     }
 
-    @PostMapping("/wishlist")
+    @PostMapping("/login")
     public String login(Model model, @ModelAttribute User user, WebRequest wr, HttpSession session){
         user.setUsername(wr.getParameter("username"));
         user.setPassword(wr.getParameter("password"));
@@ -46,7 +46,7 @@ public class Usercontroller {
             return "redirect:/wishlist";
         }
 
-        return ("/index");
+        return ("redirect:/");
     }
 
     @PostMapping("/logout")

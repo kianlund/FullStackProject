@@ -25,7 +25,7 @@
                 <td th:text="${item.price}"/>
                 <td>
                     <form method="post">
-                        <input type="hidden" th:value="item.itemID">
+                        <input type="hidden" name="itemID" th:value="${item.itemID}">
                         <input type="submit" value="Edit" formaction="editItem">
                         <input type="submit" value="Delete" formaction="deleteItem">
                     </form>
@@ -33,10 +33,10 @@
             </tr>
             <tr>
                 <form method="post">
-                <td><input type="text" placeholder="Item description" value="item" required></td>
-                <td><input type="text" placeholder="Link" value="itemURL"></td>
-                <td><input type="number" placeholder="Price" value="itemPrice"></td>
-                <td><input type="submit" value="Delete" formaction="addItem"></td>
+                <td><input type="text" placeholder="Item description" name="item" required></td>
+                <td><input type="text" placeholder="Link" name="itemURL"></td>
+                <td><input type="number" placeholder="Price" name="itemPrice"></td>
+                <td><input type="submit" value="Add" formaction="addItem"></td>
                 </form>
             </tr>
             </tbody>
