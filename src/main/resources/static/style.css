@@ -5,19 +5,25 @@ body{
 .row{
     display: flex;
     margin: 0 auto;
-    padding: 5px;
-    gap: 5px;
+    margin-top: 5px;
+    padding: 0px;
     width: 640px;
     height: 25px;
     background-color: #444444;
     border-radius: 5px;
     color: white;
-    flex-direction: column;
+    box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.2);
     align-items: center;
+}
+
+.rowItem{
+    display: flex;
+    flex-basis: 25%;
 }
 
 .maincontainer {
     margin: 0 auto;
+    margin-bottom: 25px;
     width: 640px;
     min-height: 320px;
     max-height: fit-content;
@@ -26,6 +32,7 @@ body{
     border-radius: 10px;
     justify-content: center;
     text-align: center;
+    box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.2);
 }
 
 button{
@@ -36,12 +43,6 @@ button{
 .btn{
     border: none;
     border-radius: 5px;
-    float: right;
-}
-
-.test{
-    display: flex;
-    background-color: deeppink;
 }
 
 

@@ -12,15 +12,13 @@
         </div>
     </div>
     <div class="row" th:each="item: ${itemList}">
-            <span th:text="${item.item}"/>
-            <span th:text="${item.itemURL}"/>
-            <span th:text="${item.price}"/>
+            <span class="rowItem" th:text="${item.item}"/>
+            <span class="rowItem" th:text="${item.itemURL}"/>
+            <span class="rowItem" th:text="${item.price}"/>
             <form method="post">
-                <span>
                 <input class="btn" type="hidden" name="itemID" th:value="${item.itemID}">
                 <input class="btn" type="submit" value="Edit" formaction="editItem">
                 <input class="btn" type="submit" value="Delete" formaction="deleteItem">
-                </span>
             </form>
     </div>
 
