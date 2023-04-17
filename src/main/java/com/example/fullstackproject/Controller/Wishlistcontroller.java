@@ -24,17 +24,14 @@ public class Wishlistcontroller {
     @GetMapping ("/wishlist")
     public String wishlist(Model model, @ModelAttribute User user, HttpSession session){
             User tempUser = (User) session.getAttribute("currentUser");
-            model.addAttribute(tempUser.getUsername());
-
-                List<Wishlist> wishlists = service.fetchAllWishLists(tempUser);
-                System.out.println(tempUser);
-                model.addAttribute("wishlists", wishlists);
-                return "wishlist.html";
+            model.addAttribute(tempUser);
+            List<Wishlist> wishlists = service.fetchAllWishLists(tempUser);
+            model.addAttribute("wishlists", wishlists);
+            return "wishlist";
     }
 
     @PostMapping("/addWishlist")
     public String addWishlist(Model model, @ModelAttribute Wishlist wishlist, HttpSession session){
-        System.out.println("Hertil!!!");
         User tempUser = (User) session.getAttribute("currentUser");
         wishlist.setUserID(tempUser.getUserID());
         service.addWishList(wishlist);
@@ -42,7 +39,7 @@ public class Wishlistcontroller {
         session.setAttribute("currentWishlist", wishlist);
         List<Wishlist> wishlists = service.fetchAllWishLists(tempUser);
         model.addAttribute("wishlists", wishlists);
-        return ("/wishlist");
+        return ("redirect:/wishlist");
     }
 
     @PostMapping("/editWishlist")

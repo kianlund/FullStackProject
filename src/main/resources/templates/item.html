@@ -8,7 +8,8 @@
 <body>
     <div class="maincontainer">
         <div>
-            <p th:text="${currentUser.getUsername()}"></p>
+            <p class="header" th:text="${currentUser.getUsername()}"></p>
+            Wishlist ID: <p th:text="${currentWishlist.getWishlistID()}"></p>
         </div>
     </div>
     <div class="row" th:each="item: ${itemList}">

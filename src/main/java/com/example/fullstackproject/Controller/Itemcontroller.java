@@ -27,6 +27,7 @@ public class Itemcontroller {
         User tempUser = (User) session.getAttribute("currentUser");
         List<Item> list = service.fetchAllWishlistItems(tempWishlist);
         model.addAttribute("itemList", list);
+        model.addAttribute("currentWishlist", tempWishlist);
         model.addAttribute("currentUser", tempUser);
         return "/item";
     }
