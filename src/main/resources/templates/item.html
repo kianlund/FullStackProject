@@ -8,7 +8,7 @@
 <body>
     <div class="maincontainer">
         <div>
-            TEXT??
+            <p th:text="${currentUser.getUsername()}"></p>
         </div>
     </div>
     <div class="row" th:each="item: ${itemList}">
@@ -20,6 +20,15 @@
                 <input class="btn" type="submit" value="Edit" formaction="editItem">
                 <input class="btn" type="submit" value="Delete" formaction="deleteItem">
             </form>
+
+    </div>
+    <div class="row">
+        <form method="post">
+            <input type="text" placeholder="Item description" name="item" required>
+            <input type="text" placeholder="Link" name="itemURL">
+            <input type="number" placeholder="Price" name="itemPrice">
+            <input class="btn" type="submit" value="Add" formaction="addItem">
+        </form>
     </div>
 
 <!--    <div>-->

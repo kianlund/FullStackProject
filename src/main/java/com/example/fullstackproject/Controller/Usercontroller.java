@@ -37,12 +37,13 @@ public class Usercontroller {
     }
 
     @PostMapping("/login")
-    public String login(Model model, @ModelAttribute User user, WebRequest wr, HttpSession session){
-        user.setUsername(wr.getParameter("username"));
-        user.setPassword(wr.getParameter("password"));
-        List<User> list = service.fetchAll();
-        if (service.validation(user)){
-            session.setAttribute("currentUser", list.get(list.size()-1)); //Gets the most recent user(Last user in list)
+    public String login(Model model, @ModelAttribute User loginInfo, WebRequest wr, HttpSession session){
+        loginInfo.setUsername(wr.getParameter("username"));
+        loginInfo.setPassword(wr.getParameter("password"));
+        Integer tempUserID = service.validation(loginInfo);
+        if (tempUserID != null){
+            User tempUser = service.findUserById(tempUserID);
+            session.setAttribute("currentUser", tempUser); //Gets the most recent user(Last user in list)
             return "redirect:/wishlist";
         }
 

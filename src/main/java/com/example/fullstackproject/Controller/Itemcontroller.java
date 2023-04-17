@@ -24,8 +24,10 @@ public class Itemcontroller {
     @GetMapping("/item")
     public String item(HttpSession session, Model model){
         Wishlist tempWishlist = (Wishlist) session.getAttribute("currentWishlist");
+        User tempUser = (User) session.getAttribute("currentUser");
         List<Item> list = service.fetchAllWishlistItems(tempWishlist);
         model.addAttribute("itemList", list);
+        model.addAttribute("currentUser", tempUser);
         return "/item";
     }
 

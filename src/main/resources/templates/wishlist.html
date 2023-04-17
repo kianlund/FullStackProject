@@ -13,39 +13,47 @@
         <input style="background-color: darkred" class="btn2" type="submit" value="Logout" formaction="logout">
     </form>
 
-    <table>
-        <thead>
-        <tr>
-            <th>Wishlist ID</th>
+<!--    <table>-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--            <th>Wishlist ID</th>-->
 
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="wishlist: ${wishlists}">
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr th:each="wishlist: ${wishlists}">-->
 
-            <td>Wishlist ID: <span th:text="${wishlist.wishlistID}"/>
-                <form method="post">
-                <input class="btn" type="submit" value="Edit wishlist" formaction="editWishlist">
-                    <input type="hidden" name="id" th:value="${wishlist.wishlistID}">
-                </form>
-            </td>
+<!--            <td>Wishlist ID: <span th:text="${wishlist.wishlistID}"/>-->
+<!--                <form method="post">-->
+<!--                    <input class="btn" type="submit" value="Edit wishlist" formaction="editWishlist">-->
+<!--                    <input type="hidden" name="id" th:value="${wishlist.wishlistID}">-->
+<!--                </form>-->
+<!--            </td>-->
 
 
 
-            <td>
-                <!--                    <a th:href="@{'/viewOne/'+${person.id}}">-->
-                <!--                        <button class="btn-viewOne" id="btn-viewOne">View a person</button>-->
-                <!--                    </a>-->
-                <!--                    <a th:href="@{'/deleteOne/'+${person.id}}">-->
-                <!--                        <button class="btn-deleteOne" id="btn-deleteOne">Delete a person</button>-->
-                <!--                    </a>-->
-                <!--                    <a th:href="@{'/updateOne/'+${person.id}}">-->
-                <!--                        <button class="btn-updateOne" id="btn-updateOne">Update a person</button>-->
-                <!--                    </a>-->
-            </td>
-        </tr>
-        </tbody>
-    </table>
+<!--            <td>-->
+<!--                &lt;!&ndash;                    <a th:href="@{'/viewOne/'+${person.id}}">&ndash;&gt;-->
+<!--                &lt;!&ndash;                        <button class="btn-viewOne" id="btn-viewOne">View a person</button>&ndash;&gt;-->
+<!--                &lt;!&ndash;                    </a>&ndash;&gt;-->
+<!--                &lt;!&ndash;                    <a th:href="@{'/deleteOne/'+${person.id}}">&ndash;&gt;-->
+<!--                &lt;!&ndash;                        <button class="btn-deleteOne" id="btn-deleteOne">Delete a person</button>&ndash;&gt;-->
+<!--                &lt;!&ndash;                    </a>&ndash;&gt;-->
+<!--                &lt;!&ndash;                    <a th:href="@{'/updateOne/'+${person.id}}">&ndash;&gt;-->
+<!--                &lt;!&ndash;                        <button class="btn-updateOne" id="btn-updateOne">Update a person</button>&ndash;&gt;-->
+<!--                &lt;!&ndash;                    </a>&ndash;&gt;-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+</div>
+<div class="row" th:each="wishlist: ${wishlists}">
+    <span class="rowItem" th:text="${wishlist.wishlistID}"/>
+    <form method="post">
+        <input class="btn" type="submit" value="Edit" formaction="editWishlist">
+        <input class="btn" type="submit" value="Delete" formaction="deleteWishlist">
+        <input type="hidden" name="id" th:value="${wishlist.wishlistID}">
+    </form>
 </div>
 </body>
 </html>

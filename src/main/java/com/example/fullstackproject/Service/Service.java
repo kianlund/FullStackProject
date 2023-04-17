@@ -41,15 +41,15 @@ public class Service {
         /*Det er lidt tid siden jeg har lavet validering, så kan ikke lige huske det, men ideen er at den tjekker
          inputtet mod det den har modtaget fra databasen.
          */
-        public boolean validation(User user){
+        public Integer validation(User user){
 //            int id = repo.getUserIDByName(userName);
             List<User> tempUsers = repo.fetchAllUsers();
             for (User listUser: tempUsers) {
                 if(user.getUsername().equals(listUser.getUsername()) && user.getPassword().equals(listUser.getPassword())){
-                    return true;
+                    return listUser.getUserID();
                 }
             }
-            return false;
+            return null;
         }
             //finder specific bruger i en liste af brugere
     public User findUserById(int id){

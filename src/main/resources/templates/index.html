@@ -7,30 +7,12 @@
 </head>
 <body>
     <div class="maincontainer">
-        <div>
-            <form method="post">
-                <input type="text" name="username" placeholder="Username">
-                <input type="password" name="password" placeholder="Password">
-                <input class="btn" type="submit" value="Add user" formaction="addUser">
-                <input class="btn" type="submit" value="Login" formaction="login">
-            </form>
-        </div>
-        <table>
-            <thead>
-            <tr>
-                <th>Id</th>
-                <th>Username</th>
-                <th>Password</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="user: ${userList}">
-                <td th:text="${user.userID}"/>
-                <td th:text="${user.username}"/>
-                <td th:text="${user.password}"/>
-            </tr>
-            </tbody>
-        </table>
+        <form method="post">
+            <input type="text" name="username" placeholder="Username">
+            <input type="password" name="password" placeholder="Password">
+            <input class="btn" type="submit" value="Add user" formaction="addUser">
+            <input class="btn" type="submit" value="Login" formaction="login">
+        </form>
     </div>
 
 </body>
