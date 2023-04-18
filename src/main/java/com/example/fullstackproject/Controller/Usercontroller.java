@@ -27,7 +27,7 @@ public class Usercontroller {
         }
         List<User> userList = service.fetchAll();
         model.addAttribute("userList", userList);
-        return "/index";
+        return "index.html";
     }
 
     @PostMapping("/addUser")

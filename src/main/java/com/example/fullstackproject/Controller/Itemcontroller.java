@@ -29,7 +29,7 @@ public class Itemcontroller {
         model.addAttribute("itemList", list);
         model.addAttribute("currentWishlist", tempWishlist);
         model.addAttribute("currentUser", tempUser);
-        return "/item";
+        return "item.html";
     }
 
     @PostMapping("/addItem")

@@ -27,7 +27,7 @@ public class Wishlistcontroller {
             model.addAttribute(tempUser);
             List<Wishlist> wishlists = service.fetchAllWishLists(tempUser);
             model.addAttribute("wishlists", wishlists);
-            return "wishlist";
+            return "wishlist.html";
     }
 
     @PostMapping("/addWishlist")
