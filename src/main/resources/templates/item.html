@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wishlister</title>
+    <link rel="stylesheet" type="text/css" href="style.css?v=1234">
+</head>
+<body>
+    <div class="maincontainer">
+        <form method="post">
+            <input style="background-color: darkred" class="btn2" type="submit" value="Logout" formaction="logout">
+        </form>
+
+        <div>
+            <p class="header" th:text="${currentUser.getUsername()}"></p>
+            Wishlist ID: <p th:text="${currentWishlist.getWishlistID()}"></p>
+        </div>
+    </div>
+    <div class="row" th:each="item: ${itemList}">
+            <span class="rowItem" th:text="${item.item}"/>
+            <span class="rowItem" th:text="${item.itemURL}"/>
+            <span class="rowItem" th:text="${item.price}"/>
+            <form method="post">
+                <input class="btn" type="hidden" name="itemID" th:value="${item.itemID}">
+                <input class="btn" type="submit" value="Edit" formaction="editItem">
+                <input class="btn" type="submit" value="Delete" formaction="deleteItem">
+            </form>
+
+    </div>
+    <div class="row">
+        <form method="post">
+            <input type="text" placeholder="Item description" name="item" required>
+            <input type="text" placeholder="Link" name="itemURL">
+            <input type="number" placeholder="Price" name="itemPrice">
+            <input class="btn" type="submit" value="Add" formaction="addItem">
+        </form>
+    </div>
+
+<!--    <div>-->
+<!--        <table>-->
+<!--            <thead>-->
+<!--            <tr>-->
+<!--                <th>Item</th>-->
+<!--                <th>URL</th>-->
+<!--                <th>Price</th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--            <tr th:each="item: ${itemList}">-->
+<!--                <div>-->
+<!--                    <td th:text="${item.item}"/>-->
+<!--                    <td th:text="${item.itemURL}"/>-->
+<!--                    <td th:text="${item.price}"/>-->
+<!--                    <td>-->
+<!--                        <form method="post">-->
+<!--                            <input type="hidden" name="itemID" th:value="${item.itemID}">-->
+<!--                            <input type="submit" value="Edit" formaction="editItem">-->
+<!--                            <input type="submit" value="Delete" formaction="deleteItem">-->
+<!--                        </form>-->
+<!--                    </td>-->
+<!--                </div>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <div>-->
+<!--                    <form method="post">-->
+<!--                        <td><input type="text" placeholder="Item description" name="item" required></td>-->
+<!--                        <td><input type="text" placeholder="Link" name="itemURL"></td>-->
+<!--                        <td><input type="number" placeholder="Price" name="itemPrice"></td>-->
+<!--                        <td><input type="submit" value="Add" formaction="addItem"></td>-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--        </table>-->
+<!--    </div>-->
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wishlister</title>
+    <link rel="stylesheet" type="text/css" href="style.css?v=1234">
+</head>
+<body>
+    <div class="maincontainer">
+        <form method="post">
+            <input type="text" name="username" placeholder="Username">
+            <input type="password" name="password" placeholder="Password">
+            <input class="btn" type="submit" value="Add user" formaction="addUser">
+            <input class="btn" type="submit" value="Login" formaction="login">
+        </form>
+    </div>
+
+    <div style="color: red; text-align: center" th:text="${errorMsg}"></div>
+
+</body>
+</html>
